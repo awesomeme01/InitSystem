@@ -1,0 +1,160 @@
+package com.example.demo.model;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "user_init_1")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "username", nullable = false, unique = false, length = 50)
+    private String username;
+    @Column(name = "fullname", nullable = false, unique = false, length = 50)
+    private String fullname;
+    @Column(name = "email", nullable = false, unique = true, length = 50)
+    private String email;
+    @Column(name = "phone_number", nullable = true, unique = true, length = 50)
+    private Long phoneNumber;
+    @Column(name = "password", nullable = true, unique = false, length = 50)
+    private String password;
+    @Column(name = "gender", nullable = false, unique = false, length = 10)
+    private String gender;
+    @Column(name = "is_active", nullable = false)
+    private int isActive;
+
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy = "course")
+    private Set<Course> courses;
+
+    private User(){}
+    public static class Builder{
+        private String username;
+        private String fullname;
+        private String email;
+        private String password;
+//        private int age;
+        private String gender;
+        private int isActive;
+        private Long phoneNumber;
+
+        public Builder(String username){
+            this.username = username;
+            this.isActive = 1;
+        }
+
+        public Builder withName(String fullname) {
+            this.fullname = fullname;
+            return this;
+        }
+
+        public Builder withEmail(String email){
+            this.email = email;
+            return this;
+        }
+        public Builder withPhoneNumber(Long phoneNumber){
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder withPassword(String password){
+            this.password = password;
+            return this;
+        }
+//
+//        public Builder withAge(int age) {
+//            this.age = age;
+//            return this;
+//        }
+
+        public Builder withGender(String gender){
+            this.gender = gender;
+            return this;
+        }
+
+        public Builder isActive(int isActive){
+            this.isActive = isActive;
+            return this;
+        }
+
+        public User build(){
+            User user1 = new User();
+            user1.username = this.username;
+            user1.email = this.email;
+            user1.password = this.password;
+            user1.gender = this.gender;
+            user1.isActive = this.isActive;
+            user1.phoneNumber = this.phoneNumber;
+            return user1;
+        }
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
+    }
+}
