@@ -1,9 +1,15 @@
 package com.example.demo.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "course_init_1")
+
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,9 +20,9 @@ public class Course {
     private Double duration;//month
     @Column(name = "status", unique = false)
     private Integer status;
-    @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    private User user;
+    @Column(name = "dateStarted",unique = false )
+    private LocalDateTime date;
+
 
     public Course() {
     }
@@ -25,6 +31,7 @@ public class Course {
         this.title = title;
         this.status = status;
         this.duration = duration;
+        this.date = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -58,4 +65,13 @@ public class Course {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
 }

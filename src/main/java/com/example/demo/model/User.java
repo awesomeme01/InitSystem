@@ -1,12 +1,15 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "user_init_1")
 public class User {
     @Id
@@ -20,16 +23,22 @@ public class User {
     private String email;
     @Column(name = "phone_number", nullable = true, unique = true, length = 50)
     private Long phoneNumber;
-    @Column(name = "password", nullable = true, unique = false, length = 50)
+
+    @Column(name = "password", nullable = true, unique = false, length = 200)
     private String password;
+
     @Column(name = "gender", nullable = false, unique = false, length = 10)
     private String gender;
     @Column(name = "is_active", nullable = false)
     private int isActive;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
 
 //    @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany(mappedBy = "course")
-    private Set<Course> courses;
+//    @OneToMany(mappedBy = "course")
+//    private Set<Course> courses;
 
     private User(){}
     public static class Builder{
@@ -41,7 +50,7 @@ public class User {
         private String gender;
         private int isActive;
         private Long phoneNumber;
-
+        private Course course;
         public Builder(String username){
             this.username = username;
             this.isActive = 1;
@@ -60,7 +69,10 @@ public class User {
             this.phoneNumber = phoneNumber;
             return this;
         }
-
+        public Builder withCourse(Course course){
+            this.course = course;
+            return this;
+        }
         public Builder withPassword(String password){
             this.password = password;
             return this;
@@ -86,6 +98,8 @@ public class User {
             user1.username = this.username;
             user1.email = this.email;
             user1.password = this.password;
+            user1.fullname = fullname;
+            user1.course = course;
             user1.gender = this.gender;
             user1.isActive = this.isActive;
             user1.phoneNumber = this.phoneNumber;
@@ -156,5 +170,13 @@ public class User {
 
     public void setIsActive(int isActive) {
         this.isActive = isActive;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

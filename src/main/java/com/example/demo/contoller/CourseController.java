@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 //@Secured("")
 @RequestMapping("/api/course")
+@CrossOrigin(origins = "*")
 public class CourseController {
     //    List<Course> getAll();
     //    Course createCourse(Course course);

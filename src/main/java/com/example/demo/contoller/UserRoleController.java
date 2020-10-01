@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Secured("ROLE_ADMIN")
 @RequestMapping(path = "/api/userRoles")
+@CrossOrigin(origins = "*")
 public class UserRoleController {
     //    List<UserRole> getAll();
     //    List<UserRole> getRolesByUser(User user);

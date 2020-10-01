@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.helper.LoginCheck;
 import com.example.demo.helper.UserUpdateWrapper;
+import com.example.demo.model.Course;
 import com.example.demo.model.User;
 import com.example.demo.model.UserRole;
 import com.example.demo.repository.UserRepository;
@@ -9,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -42,7 +45,23 @@ public class UserServiceImpl implements UserService{
                 .isActive(userUpdateWrapper.getIsActive()).build();
         return createUser(user);
     }
+    @Override
+    public List<User> getUsersByCourse(Course course){
+        return userRepository.findAll().stream().filter(x->x.getCourse().equals(course)).collect(Collectors.toList());
 
+    }
+//    @Override
+//    public User login(LoginCheck loginCheck){
+//        BCryptPasswordEncoder p = new BCryptPasswordEncoder();
+//        User user;
+//        for(User c: userRepository.findAll()){
+//            if(c.getUsername().equals(loginCheck.getUsername())){
+//                user = c;
+//            }
+//        }
+//        userService.
+//        return
+//    }
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id).get();

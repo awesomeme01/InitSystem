@@ -1,5 +1,7 @@
 package com.example.demo.helper;
 
+import com.example.demo.model.Course;
+
 public class UserUpdateWrapper {
     private String username;
     private String fullname;
@@ -9,15 +11,17 @@ public class UserUpdateWrapper {
     private String gender;
     private int isActive;
     private Long phoneNumber;
+    private Course course;
 
     public UserUpdateWrapper() {
     }
 
-    public UserUpdateWrapper(String username, String fullname, String email, String password, String gender, int isActive, Long phoneNumber) {
+    public UserUpdateWrapper(String username, String fullname, String email, String password, String gender, int isActive, Long phoneNumber, Course course) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
+        this.course = course;
         this.gender = gender;
         this.isActive = isActive;
         this.phoneNumber = phoneNumber;
@@ -65,6 +69,14 @@ public class UserUpdateWrapper {
 
     public int getIsActive() {
         return isActive;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public void setIsActive(int isActive) {

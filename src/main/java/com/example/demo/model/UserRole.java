@@ -2,11 +2,13 @@ package com.example.demo.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_role_init_1")
+
 public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
