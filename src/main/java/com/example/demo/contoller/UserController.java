@@ -10,7 +10,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/admin/user")
+@RequestMapping(path = "/user")
 @CrossOrigin(origins = "*, 192.168.0.138:3000")
 public class UserController {
     //    List<User> getAll();

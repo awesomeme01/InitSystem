@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> getUsersByCourse(Course course){
         return userRepository.findAll().stream().filter(x->x.getCourse().equals(course)).collect(Collectors.toList());
-
     }
 //    @Override
 //    public User login(LoginCheck loginCheck){

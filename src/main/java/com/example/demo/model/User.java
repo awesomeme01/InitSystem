@@ -35,6 +35,11 @@ public class User {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+
 
 //    @OnDelete(action = OnDeleteAction.CASCADE)
 //    @OneToMany(mappedBy = "course")
@@ -51,6 +56,7 @@ public class User {
         private int isActive;
         private Long phoneNumber;
         private Course course;
+        private Group group;
         public Builder(String username){
             this.username = username;
             this.isActive = 1;
@@ -71,6 +77,10 @@ public class User {
         }
         public Builder withCourse(Course course){
             this.course = course;
+            return this;
+        }
+        public Builder withGroup(Group group){
+            this.group = group;
             return this;
         }
         public Builder withPassword(String password){
@@ -100,6 +110,7 @@ public class User {
             user1.password = this.password;
             user1.fullname = fullname;
             user1.course = course;
+            user1.group = group;
             user1.gender = this.gender;
             user1.isActive = this.isActive;
             user1.phoneNumber = this.phoneNumber;

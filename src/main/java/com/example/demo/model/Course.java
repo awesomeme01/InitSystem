@@ -16,6 +16,12 @@ public class Course {
     private Long id;
     @Column(name = "title", unique = true, length = 50,nullable = false)
     private String title;
+    @ManyToOne
+    @JoinColumn(name = "mentor_id", unique = false, nullable = true)
+    private User mentorId;
+    @ManyToOne
+    @JoinColumn(name = "mentor2Id", unique = false, nullable = true)
+    private User mentor2Id;
     @Column(name = "duration", unique = false)
     private Double duration;//month
     @Column(name = "status", unique = false)
@@ -33,7 +39,14 @@ public class Course {
         this.duration = duration;
         this.date = LocalDateTime.now();
     }
-
+    public Course(String title, Double duration, Integer status, User mentor, User mentor2) {
+        this.title = title;
+        this.status = status;
+        this.mentorId = mentor;
+        this.mentor2Id = mentor2;
+        this.duration = duration;
+        this.date = LocalDateTime.now();
+    }
     public Long getId() {
         return id;
     }
@@ -74,4 +87,19 @@ public class Course {
         this.date = date;
     }
 
+    public User getMentorId() {
+        return mentorId;
+    }
+
+    public void setMentorId(User mentorId) {
+        this.mentorId = mentorId;
+    }
+
+    public User getMentor2Id() {
+        return mentor2Id;
+    }
+
+    public void setMentor2Id(User mentor2Id) {
+        this.mentor2Id = mentor2Id;
+    }
 }
