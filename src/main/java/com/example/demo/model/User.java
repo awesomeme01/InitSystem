@@ -108,9 +108,9 @@ public class User {
             user1.username = this.username;
             user1.email = this.email;
             user1.password = this.password;
-            user1.fullname = fullname;
-            user1.course = course;
-            user1.group = group;
+            user1.fullname = this.fullname;
+            user1.course = this.course;
+            user1.group = this.group;
             user1.gender = this.gender;
             user1.isActive = this.isActive;
             user1.phoneNumber = this.phoneNumber;
@@ -189,5 +189,13 @@ public class User {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

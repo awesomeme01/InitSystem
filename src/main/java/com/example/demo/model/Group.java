@@ -14,7 +14,7 @@ public class Group {
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
-
+    public Group(){}
     public Group(String name, Course course) {
         this.name = name;
         this.course = course;

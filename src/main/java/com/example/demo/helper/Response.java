@@ -1,12 +1,22 @@
 package com.example.demo.helper;
 
+import com.example.demo.model.UserRole;
+
+import java.util.List;
+
 public class Response {
     Boolean isSuccessful;
     String message;
     Object object;
-
+    List<UserRole> userRole;
     public Response(){}
 
+    public Response(Boolean isSuccessful, String message, Object object, List<UserRole> userRole) {
+        this.isSuccessful = isSuccessful;
+        this.message = message;
+        this.object = object;
+        this.userRole = userRole;
+    }
     public Response(Boolean isSuccessful, String message, Object object) {
         this.isSuccessful = isSuccessful;
         this.message = message;
@@ -35,5 +45,13 @@ public class Response {
 
     public void setObject(Object object) {
         this.object = object;
+    }
+
+    public List<UserRole> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(List<UserRole> userRole) {
+        this.userRole = userRole;
     }
 }
