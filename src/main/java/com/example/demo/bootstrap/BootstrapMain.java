@@ -1,6 +1,8 @@
 package com.example.demo.bootstrap;
 
+import com.example.demo.helper.CourseUpdateWrapper;
 import com.example.demo.model.*;
+import com.example.demo.repository.MentorRepository;
 import com.example.demo.repository.NewsRepository;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.GroupService;
@@ -22,6 +24,8 @@ public class   BootstrapMain implements CommandLineRunner {
     GroupService groupService;
     @Autowired
     NewsRepository newsRepository;
+    @Autowired
+    MentorRepository mentorRepository;
     @Override
     public void run(String... args) throws Exception{
         //Initial users
@@ -53,29 +57,56 @@ public class   BootstrapMain implements CommandLineRunner {
         News news2 = new News("Helloworld", "I'm the new platform for teachers and students in init.kg.", 1, "ROLE_USER");
         newsRepository.save(news);
         newsRepository.save(news2);
-        User user1 = new User.Builder("shabdan").withName("Shabdan Abzhaparov").withGender("male").withPassword("123").withPhoneNumber((long)555348520).withEmail("sh.abjaparov@gmail.com").withCourse(course1).isActive(1).build();
-        User user2 = new User.Builder("ilyas").withName("Ilyas Yangurazov").withGender("male").withPassword("123").withPhoneNumber((long)555348521).withEmail("ilyas@gmail.com").withCourse(course2).isActive(1).build();
-        User user6 = new User.Builder("danya").withName("Daniar Chekirov").withGender("male").withPassword("123").withPhoneNumber((long)555348529).withEmail("danya@gmail.com").withCourse(course2).isActive(1).build();
-        User user5 = new User.Builder("aito").withName("Aitemir").withGender("female").withPassword("123").withPhoneNumber((long)555348528).withEmail("aito@gmail.com").withCourse(course3).isActive(1).build();
-        User user3 = new User.Builder("aibek").withName("Aibek Aibekov").withGender("male").withPassword("123").withPhoneNumber((long)555348522).withEmail("aibek@gmail.com").isActive(1).withGroup(group1).build();
-        User user4 = new User.Builder("kairat").withName("Kairat Kairatov").withGender("male").withPassword("123").withPhoneNumber((long)555348523).withEmail("kairat@gmail.com").withGroup(group1).isActive(1).build();
+        User user1 = new User.Builder("shabdan").withName("Shabdan Abzhaparov").withGender("male").withPassword("123").withPhoneNumber((long)555348520).withEmail("sh.abjaparov@gmail.com").withCourse(course1).isActive(1).withLevel(3).build();
+        User user2 = new User.Builder("ilyas").withName("Ilyas Yangurazov").withGender("male").withPassword("123").withPhoneNumber((long)555348521).withEmail("ilyas@gmail.com").withCourse(course2).isActive(1).withLevel(3).build();
+        User user6 = new User.Builder("danya").withName("Daniar Chekirov").withGender("male").withPassword("123").withPhoneNumber((long)555348529).withEmail("danya@gmail.com").withCourse(course2).isActive(1).withLevel(2).build();
+        User user5 = new User.Builder("aito").withName("Aitemir").withGender("male").withPassword("123").withPhoneNumber((long)555348528).withEmail("aito@gmail.com").withCourse(course3).isActive(1).withLevel(3).build();
+        User user3 = new User.Builder("aibek").withName("Aibek Aibekov").withGender("male").withPassword("123").withPhoneNumber((long)555348522).withEmail("aibek@gmail.com").isActive(1).withLevel(1).build();
+        User user4 = new User.Builder("kairat").withName("Kairat Kairatov").withGender("male").withPassword("123").withPhoneNumber((long)555348523).withEmail("kairat@gmail.com").isActive(1).withLevel(1).build();
+        User user7 = new User.Builder("ratmir").withName("Ratmir").withGender("male").withPassword("123").withPhoneNumber((long)555348530).withEmail("ratmir@gmail.com").isActive(1).withLevel(4).build();
+        User user8 = new User.Builder("asein").withName("Asein").withGender("male").withPassword("123").withPhoneNumber((long)555348531).withEmail("asein@gmail.com").isActive(1).withLevel(4).build();
+        User user9 = new User.Builder("alish").withName("Alish").withGender("male").withPassword("123").withPhoneNumber((long)555348532).withEmail("alish@gmail.com").isActive(1).withLevel(4).build();
+        User user10 = new User.Builder("altyn").withName("Altynbek").withGender("male").withPassword("123").withPhoneNumber((long)555348534).withEmail("altysh@gmail.com").withCourse(course3).isActive(1).withLevel(2).build();
+        User user11 = new User.Builder("aika").withName("Aika").withGender("female").withPassword("123").withPhoneNumber((long)555348536).withEmail("aika@gmail.com").withCourse(course2).isActive(1).withLevel(4).build();
+        User user12 = new User.Builder("erkin").withName("Erkin").withGender("male").withPassword("123").withPhoneNumber((long)555348537).withEmail("erkin@gmail.com").withCourse(course3).isActive(1).withLevel(3).build();
+
         userService.createUser(user1);
         userService.createUser(user2);
         userService.createUser(user3);
         userService.createUser(user4);
         userService.createUser(user5);
         userService.createUser(user6);
+        userService.createUser(user7);
+        userService.createUser(user8);
+        userService.createUser(user9);
+        userService.createUser(user10);
+        userService.createUser(user11);
+        userService.createUser(user12);
+        //(String title, Integer status, Double duration, User mentorId, User mentor2Id)
+        mentorRepository.save(new Mentor(user2, course2));
+        mentorRepository.save(new Mentor(user6, course2));
+        mentorRepository.save(new Mentor(user5, course3));
+        mentorRepository.save(new Mentor(user1, course1));
+
+
         UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
         UserRole userRole2 = new UserRole("ROLE_ADMIN", user2);
-
-        UserRole userRole3 = new UserRole("ROLE_STUDENT", user3);
-        UserRole userRole4 = new UserRole("ROLE_STUDENT", user4);
-        UserRole userRole9 = new UserRole("ROLE_ADMIN", user5);
-        UserRole userRole10 = new UserRole("ROLE_ADMIN", user6);
+        UserRole userRole3 = new UserRole("ROLE_ADMIN", user8);
+        UserRole userRole4 = new UserRole("ROLE_ADMIN", user9);
+//        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
+        UserRole userRole5 = new UserRole("ROLE_ADMIN", user10);
+//        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
+        UserRole userRole6 = new UserRole("ROLE_ADMIN", user11);
+//        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
+        UserRole userRole7 = new UserRole("ROLE_ADMIN", user12);
         userRoleService.createUserRole(userRole1);
         userRoleService.createUserRole(userRole2);
         userRoleService.createUserRole(userRole3);
         userRoleService.createUserRole(userRole4);
+        userRoleService.createUserRole(userRole5);
+        userRoleService.createUserRole(userRole6);
+        userRoleService.createUserRole(userRole7);
+
 
     }
 }

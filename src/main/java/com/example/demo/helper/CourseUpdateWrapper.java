@@ -1,10 +1,14 @@
 package com.example.demo.helper;
 
+import com.example.demo.model.User;
+
 public class CourseUpdateWrapper {
 
     private String title;
     private Integer status;
     private Double duration;//month
+    private User mentorId;
+    private User mentor2Id;
 
     public CourseUpdateWrapper() {
     }
@@ -15,6 +19,15 @@ public class CourseUpdateWrapper {
         this.status = status;
         this.duration = duration;
     }
+
+    public CourseUpdateWrapper(String title, Integer status, Double duration, User mentorId, User mentor2Id) {
+        this.title = title;
+        this.status = status;
+        this.duration = duration;
+        this.mentorId = mentorId;
+        this.mentor2Id = mentor2Id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -37,5 +50,21 @@ public class CourseUpdateWrapper {
 
     public void setDuration(Double duration) {
         this.duration = duration;
+    }
+
+    public User getMentorId() {
+        return mentorId;
+    }
+
+    public void setMentorId(User mentorId) {
+        this.mentorId = mentorId;
+    }
+
+    public User getMentor2Id() {
+        return mentor2Id;
+    }
+
+    public void setMentor2Id(User mentor2Id) {
+        this.mentor2Id = mentor2Id;
     }
 }

@@ -2,10 +2,12 @@ package com.example.demo.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "course_init_1")
@@ -14,21 +16,16 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "title", unique = true, length = 50,nullable = false)
+    @Column(name = "title", unique = false, length = 50,nullable = false)
     private String title;
-    @ManyToOne
-    @JoinColumn(name = "mentor_id", unique = false, nullable = true)
-    private User mentorId;
-    @ManyToOne
-    @JoinColumn(name = "mentor2Id", unique = false, nullable = true)
-    private User mentor2Id;
     @Column(name = "duration", unique = false)
     private Double duration;//month
     @Column(name = "status", unique = false)
     private Integer status;
     @Column(name = "dateStarted",unique = false )
     private LocalDateTime date;
-
+    @Transient
+    private List<Mentor> mentors;
 
     public Course() {
     }
@@ -42,8 +39,6 @@ public class Course {
     public Course(String title, Double duration, Integer status, User mentor, User mentor2) {
         this.title = title;
         this.status = status;
-        this.mentorId = mentor;
-        this.mentor2Id = mentor2;
         this.duration = duration;
         this.date = LocalDateTime.now();
     }
@@ -87,19 +82,11 @@ public class Course {
         this.date = date;
     }
 
-    public User getMentorId() {
-        return mentorId;
+    public List<Mentor> getMentors() {
+        return mentors;
     }
 
-    public void setMentorId(User mentorId) {
-        this.mentorId = mentorId;
-    }
-
-    public User getMentor2Id() {
-        return mentor2Id;
-    }
-
-    public void setMentor2Id(User mentor2Id) {
-        this.mentor2Id = mentor2Id;
+    public void setMentors(List<Mentor> mentors) {
+        this.mentors = mentors;
     }
 }

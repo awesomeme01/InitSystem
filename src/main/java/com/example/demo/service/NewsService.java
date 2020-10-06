@@ -7,4 +7,9 @@ import java.util.List;
 public interface NewsService {
     List<News> getAll();
 
+    News create(News news);
+
+    void delete(Long id);
+
+    News updater(News news);
 }

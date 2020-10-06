@@ -20,6 +20,7 @@ public class CourseController {
     //    void deleteById(Long id);
     @Autowired
     CourseService courseService;
+    @Secured("ROLE_USER")
     @GetMapping(path="/getAll")
     public Response getAll(){
         return new Response(true, "All courses", courseService.getAll());
