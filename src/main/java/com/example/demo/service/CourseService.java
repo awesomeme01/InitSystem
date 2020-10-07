@@ -8,7 +8,7 @@ import java.util.List;
 public interface CourseService {
     List<Course> getAll();
     Course createCourse(Course course);
-    Course updateCourse(CourseUpdateWrapper courseUpdateWrapper, Long id    );
+    Course updateCourse(CourseUpdateWrapper courseUpdateWrapper, Long id);
     Course getCourseById(Long id);
     void deleteById(Long id);
 }

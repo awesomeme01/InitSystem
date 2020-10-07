@@ -3,7 +3,7 @@ package com.example.demo.service;
 import com.example.demo.helper.CourseUpdateWrapper;
 import com.example.demo.model.Course;
 import com.example.demo.repository.CourseRepository;
-import com.example.demo.repository.MentorRepository;
+//import com.example.demo.repository.MentorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 public class CourseServiceImpl implements CourseService{
     @Autowired
     CourseRepository courseRepository;
-    @Autowired
-    MentorRepository mentorRepository;
+//    @Autowired
+//    MentorRepository mentorRepository;
     @Override
     public List<Course> getAll() {
         List<Course> courses = courseRepository.findAll();
-        for(Course c : courses){
-            c.setMentors(mentorRepository.findAll().stream().filter(x->x.getCourseId().equals(c.getId())).collect(Collectors.toList()));
-        }
+//        for(Course c : courses){
+//            c.setMentors(mentorRepository.findAll().stream().filter(x->x.getCourseId().equals(c.getId())).collect(Collectors.toList()));
+//        }
         return courses;
     }
 

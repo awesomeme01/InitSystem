@@ -2,7 +2,7 @@ package com.example.demo.bootstrap;
 
 import com.example.demo.helper.CourseUpdateWrapper;
 import com.example.demo.model.*;
-import com.example.demo.repository.MentorRepository;
+//import com.example.demo.repository.MentorRepository;
 import com.example.demo.repository.NewsRepository;
 import com.example.demo.service.CourseService;
 import com.example.demo.service.GroupService;
@@ -24,8 +24,8 @@ public class   BootstrapMain implements CommandLineRunner {
     GroupService groupService;
     @Autowired
     NewsRepository newsRepository;
-    @Autowired
-    MentorRepository mentorRepository;
+//    @Autowired
+//    MentorRepository mentorRepository;
     @Override
     public void run(String... args) throws Exception{
         //Initial users
@@ -82,15 +82,17 @@ public class   BootstrapMain implements CommandLineRunner {
         userService.createUser(user10);
         userService.createUser(user11);
         userService.createUser(user12);
-        //(String title, Integer status, Double duration, User mentorId, User mentor2Id)
-        mentorRepository.save(new Mentor(user2, course2));
-        mentorRepository.save(new Mentor(user6, course2));
-        mentorRepository.save(new Mentor(user5, course3));
-        mentorRepository.save(new Mentor(user1, course1));
+//        //(String title, Integer status, Double duration, User mentorId, User mentor2Id)
+//        mentorRepository.save(new Mentor(user2, course2));
+//        mentorRepository.save(new Mentor(user6, course2));
+//        mentorRepository.save(new Mentor(user5, course3));
+//        mentorRepository.save(new Mentor(user1, course1));
 
 
         UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
         UserRole userRole2 = new UserRole("ROLE_ADMIN", user2);
+        UserRole userRole8 = new UserRole("ROLE_ADMIN", user7);
+
         UserRole userRole3 = new UserRole("ROLE_ADMIN", user8);
         UserRole userRole4 = new UserRole("ROLE_ADMIN", user9);
 //        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
@@ -106,6 +108,7 @@ public class   BootstrapMain implements CommandLineRunner {
         userRoleService.createUserRole(userRole5);
         userRoleService.createUserRole(userRole6);
         userRoleService.createUserRole(userRole7);
+        userRoleService.createUserRole(userRole8);
 
 
     }

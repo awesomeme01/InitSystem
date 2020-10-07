@@ -24,8 +24,8 @@ public class Course {
     private Integer status;
     @Column(name = "dateStarted",unique = false )
     private LocalDateTime date;
-    @Transient
-    private List<Mentor> mentors;
+//    @Transient
+//    private List<Mentor> mentors;
 
     public Course() {
     }
@@ -81,12 +81,12 @@ public class Course {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
-    public List<Mentor> getMentors() {
-        return mentors;
-    }
-
-    public void setMentors(List<Mentor> mentors) {
-        this.mentors = mentors;
-    }
+//
+//    public List<Mentor> getMentors() {
+//        return mentors;
+//    }
+//
+//    public void setMentors(List<Mentor> mentors) {
+//        this.mentors = mentors;
+//    }
 }
