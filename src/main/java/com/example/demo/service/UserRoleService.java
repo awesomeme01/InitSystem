@@ -10,4 +10,5 @@ public interface UserRoleService {
     List<UserRole> getRolesByUserId (Long id);
     UserRole createUserRole(UserRole userRole);
     void deleteUserRole(Long id);
+    List<UserRole> getRolesByRolename(String role);
 }

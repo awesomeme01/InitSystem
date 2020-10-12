@@ -39,6 +39,10 @@ public class User {
     private Course course;
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
 
@@ -60,6 +64,7 @@ public class User {
         private Course course;
         private int level;
         private Group group;
+        private Project project;
         public Builder(String username){
             this.username = username;
             this.isActive = 1;
@@ -74,8 +79,13 @@ public class User {
             this.email = email;
             return this;
         }
+
         public Builder withLevel(int level){
             this.level = level;
+            return this;
+        }
+        public Builder withProject(Project project){
+            this.project = project;
             return this;
         }
         public Builder withPhoneNumber(Long phoneNumber){
@@ -119,6 +129,7 @@ public class User {
             user1.level = this.level;
             user1.course = this.course;
             user1.group = this.group;
+            user1.project = this.project;
             user1.gender = this.gender;
             user1.isActive = this.isActive;
             user1.phoneNumber = this.phoneNumber;
@@ -201,6 +212,14 @@ public class User {
 
     public int getLevel() {
         return level;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public void setLevel(int level) {

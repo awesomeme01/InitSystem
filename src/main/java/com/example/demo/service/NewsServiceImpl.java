@@ -5,7 +5,9 @@ import com.example.demo.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NewsServiceImpl implements NewsService{
@@ -13,8 +15,16 @@ public class NewsServiceImpl implements NewsService{
     NewsRepository newsRepository;
 
     @Override
-    public List<News> getAll() {
-        return newsRepository.findAll();
+    public List<News> getAll(int isForStudent) {
+//        ArrayList<News> news = new ArrayList<>();
+
+        if(isForStudent == 1){
+            return newsRepository.findAll().stream().filter(x->x.getForRole().equals("ROLE_USER")).collect(Collectors.toList());
+        }
+        else{
+            return newsRepository.findAll();
+        }
+
     }
 
     @Override

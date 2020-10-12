@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.helper.LoginCheck;
 import com.example.demo.helper.UserUpdateWrapper;
 import com.example.demo.model.Course;
+import com.example.demo.model.Project;
 import com.example.demo.model.User;
 
 import java.util.List;
@@ -15,5 +16,6 @@ public interface UserService {
     User updateUser(UserUpdateWrapper userUpdateWrapper, Long id);
     User getUserById(Long id);
     void deleteUserById(Long id);
+    List<User> getByProject(Project project);
 
 }

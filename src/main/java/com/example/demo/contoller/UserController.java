@@ -3,7 +3,9 @@ package com.example.demo.contoller;
 import com.example.demo.helper.LoginCheck;
 import com.example.demo.helper.Response;
 import com.example.demo.helper.UserUpdateWrapper;
+import com.example.demo.model.Course;
 import com.example.demo.model.User;
+import com.example.demo.repository.CourseRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -21,7 +23,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
+    @Autowired
+    CourseRepository courseRepository;
     @Secured("ROLE_ADMIN")
     @GetMapping(path = "/getAll")
     public Response getAll(){
@@ -46,6 +49,11 @@ public class UserController {
     @GetMapping(path = "/get/{id}")
     public Response getUserById(@PathVariable Long id){
         return new Response(true, "Information about User with id = " + id, userService.getUserById(id));
+    }
+    @Secured("ROLE_USER")
+    @GetMapping(path = "/getByCourseId/{id}")
+    public Response getByCourseId(@PathVariable Long id){
+        return new Response(true, "All users of the course with id = " + id, userService.getUsersByCourse(courseRepository.findById(id).get()));
     }
     @Secured("ROLE_ADMIN")
     @DeleteMapping(path = "/delete/{id}")

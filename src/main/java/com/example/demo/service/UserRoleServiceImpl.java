@@ -25,6 +25,11 @@ public class UserRoleServiceImpl implements UserRoleService{
     }
 
     @Override
+    public List<UserRole> getRolesByRolename(String role) {
+        return userRoleRepository.findAll().stream().filter(x->x.getRole().equals(role)).collect(Collectors.toList());
+    }
+
+    @Override
     public UserRole createUserRole(UserRole userRole) {
         return userRoleRepository.save(userRole);
     }

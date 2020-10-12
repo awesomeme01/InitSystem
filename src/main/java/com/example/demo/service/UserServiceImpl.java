@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.helper.LoginCheck;
 import com.example.demo.helper.UserUpdateWrapper;
 import com.example.demo.model.Course;
+import com.example.demo.model.Project;
 import com.example.demo.model.User;
 import com.example.demo.model.UserRole;
 import com.example.demo.repository.UserRepository;
@@ -45,6 +46,16 @@ public class UserServiceImpl implements UserService{
                 .isActive(userUpdateWrapper.getIsActive()).build();
         return createUser(user);
     }
+
+    @Override
+    public List<User> getByProject(Project project) {
+        return userRepository.findAll().stream().filter(x->{
+            if(x.getProject() != null)
+                return x.getProject().equals(project);
+            return false;
+        }).collect(Collectors.toList());
+    }
+
     @Override
     public List<User> getUsersByCourse(Course course){
         return userRepository.findAll().stream().filter(x->x.getCourse().equals(course)).collect(Collectors.toList());

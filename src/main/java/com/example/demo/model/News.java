@@ -17,8 +17,8 @@ public class News {
     private int isActive;
     @Column(name = "forRole")
     private String forRole;
-//    @Column(name = "dateAdded", nullable =false)
-//    private LocalDateTime dateAdded;
+    @Column(name = "dateAdded", nullable =false)
+    private LocalDateTime dateAdded;
 
     public News() {
     }
@@ -28,6 +28,13 @@ public class News {
         this.description = description;
         this.isActive = isActive;
         this.forRole = forRole;
+        this.dateAdded = LocalDateTime.now();
+    }
+    public News(String title, String description, int isActive) {
+        this.title = title;
+        this.description = description;
+        this.isActive = isActive;
+        this.dateAdded = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -68,5 +75,13 @@ public class News {
 
     public void setForRole(String forRole) {
         this.forRole = forRole;
+    }
+
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(LocalDateTime dateAdded) {
+        this.dateAdded = dateAdded;
     }
 }
