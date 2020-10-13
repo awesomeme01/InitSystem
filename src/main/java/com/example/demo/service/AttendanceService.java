@@ -15,5 +15,7 @@ public interface AttendanceService {
     List<Attendance> getToday();
     List<Attendance> getByGroup();
     List<Attendance> getByCourse();
+    List<Attendance> createAttendance(List<Attendance> l);
+    
 
 }

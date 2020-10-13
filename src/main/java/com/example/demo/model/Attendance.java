@@ -18,12 +18,12 @@ public class Attendance {
     private LocalDateTime localDateTime;
 
     @Column(name = "state", nullable = false)
-    private String state;
+    private int state;
 
     public Attendance(){
         this.localDateTime = LocalDateTime.now();
     }
-    public Attendance(User user, String state) {
+    public Attendance(User user, int state) {
         this.user = user;
         this.localDateTime = LocalDateTime.now();
         this.state = state;
@@ -53,11 +53,11 @@ public class Attendance {
         this.localDateTime = localDateTime;
     }
 
-    public String getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
 }
