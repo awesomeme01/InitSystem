@@ -87,7 +87,7 @@
 					<execution>
 						<phase>package</phase>
 <!--						<configuration></configuration>-->
-						<goals><goal>install</goal></goals>
+						<goals><goal>copy</goal></goals>
 						<configuration>
 							<artifactItems>
 								<artifactItem>
@@ -101,23 +101,23 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>com.heroku.sdk</groupId>
-				<artifactId>heroku-maven-plugin</artifactId>
-				<version>3.0.3</version>
-				<configuration>
-					<appName>heroku-demo-stackabuse</appName>
-					<includeTarget>false</includeTarget>
-					<includes>
-						<include>${project.build.directory}/${project.build.finalName}.jar</include>
-					</includes>
-					<jdkVersion>1.8</jdkVersion>
-					<processTypes>
-						<web>java $JAVA_OPTS -jar
-							${project.build.directory}/${project.build.finalName}.jar</web>
-					</processTypes>
-				</configuration>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>com.heroku.sdk</groupId>-->
+<!--				<artifactId>heroku-maven-plugin</artifactId>-->
+<!--				<version>3.0.3</version>-->
+<!--				<configuration>-->
+<!--					<appName>heroku-demo-stackabuse</appName>-->
+<!--					<includeTarget>false</includeTarget>-->
+<!--					<includes>-->
+<!--						<include>${project.build.directory}/${project.build.finalName}.jar</include>-->
+<!--					</includes>-->
+<!--					<jdkVersion>1.8</jdkVersion>-->
+<!--					<processTypes>-->
+<!--						<web>java $JAVA_OPTS -jar-->
+<!--							${project.build.directory}/${project.build.finalName}.jar</web>-->
+<!--					</processTypes>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 
