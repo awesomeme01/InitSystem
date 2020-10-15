@@ -28,6 +28,8 @@ public class Course {
 //    private List<Mentor> mentors;
 
     public Course() {
+        this.date = LocalDateTime.now();
+        this.status = 1;
     }
 
     public Course(String title, Double duration, Integer status) {

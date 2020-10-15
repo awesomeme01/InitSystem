@@ -13,9 +13,10 @@ public interface AttendanceService {
     List<Attendance> getLastMonth();
     List<Attendance> getLastWeek();
     List<Attendance> getToday();
-    List<Attendance> getByGroup();
-    List<Attendance> getByCourse();
+    List<Attendance> getByUser(Long userId);
+    List<Attendance> getByGroup(Long groupId);
+    List<Attendance> getByCourse(Long courseId);
     List<Attendance> createAttendance(List<Attendance> l);
-    
+    List<Attendance> updateAttendance(List<Attendance> l);
 
 }

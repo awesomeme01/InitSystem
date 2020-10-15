@@ -51,7 +51,9 @@ public class User {
 //    @OneToMany(mappedBy = "course")
 //    private Set<Course> courses;
 
-    private User(){}
+    private User(){
+        this.isActive = 1;
+    }
     public static class Builder{
         private String username;
         private String fullname;
