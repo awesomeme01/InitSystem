@@ -104,7 +104,7 @@
 			<plugin>
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
-				<version>{version}</version>
+				<version>3.0.3</version>
 				<configuration>
 					<appName>heroku-demo-stackabuse</appName>
 					<includeTarget>false</includeTarget>
