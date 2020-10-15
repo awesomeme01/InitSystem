@@ -87,7 +87,7 @@
 					<execution>
 						<phase>package</phase>
 <!--						<configuration></configuration>-->
-						<goals><goal>copy</goal></goals>
+						<goals><goal>install</goal></goals>
 						<configuration>
 							<artifactItems>
 								<artifactItem>
