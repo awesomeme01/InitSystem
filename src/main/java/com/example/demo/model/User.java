@@ -6,6 +6,8 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,10 +39,14 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "user_project",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "project_id") }
+    )
+    Set<Project> projects = new HashSet<>();
+
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -66,7 +72,7 @@ public class User {
         private Course course;
         private int level;
         private Group group;
-        private Project project;
+        Set<Project> projects = new HashSet<>();
         public Builder(String username){
             this.username = username;
             this.isActive = 1;
@@ -86,8 +92,8 @@ public class User {
             this.level = level;
             return this;
         }
-        public Builder withProject(Project project){
-            this.project = project;
+        public Builder withProjects(Set<Project> projects){
+            this.projects = projects;
             return this;
         }
         public Builder withPhoneNumber(Long phoneNumber){
@@ -131,7 +137,7 @@ public class User {
             user1.level = this.level;
             user1.course = this.course;
             user1.group = this.group;
-            user1.project = this.project;
+            user1.projects = this.projects;
             user1.gender = this.gender;
             user1.isActive = this.isActive;
             user1.phoneNumber = this.phoneNumber;
@@ -216,12 +222,12 @@ public class User {
         return level;
     }
 
-    public Project getProject() {
-        return project;
+    public Set<Project> getProject() {
+        return projects;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     public void setLevel(int level) {

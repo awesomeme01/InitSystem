@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 @Component
 public class   BootstrapMain implements CommandLineRunner {
     @Autowired
@@ -52,6 +56,11 @@ public class   BootstrapMain implements CommandLineRunner {
         groupService.createGroup(group3);
         groupService.createGroup(group4);
 
+
+        News news = new News("Helloworld", "I'm the new platform for teachers and students in init.kg.", 1, "ROLE_ADMIN");
+        News news2 = new News("Helloworld", "I'm the new platform for teachers and students in init.kg.", 1);
+        newsRepository.save(news);
+        newsRepository.save(news2);
         Project project = new Project("Платформа инит", "1 неделя");
         project.setIsCompleted(1);
         Project project2 = new Project("Медицинский сайт", "2 месяца");
@@ -63,12 +72,9 @@ public class   BootstrapMain implements CommandLineRunner {
         projectService.create(project3);
         projectService.create(project4);
         projectService.create(project5);
-        News news = new News("Helloworld", "I'm the new platform for teachers and students in init.kg.", 1, "ROLE_ADMIN");
-        News news2 = new News("Helloworld", "I'm the new platform for teachers and students in init.kg.", 1);
-        newsRepository.save(news);
-        newsRepository.save(news2);
-        User user1 = new User.Builder("shabdan").withName("Shabdan Abzhaparov").withGender("male").withPassword("123").withPhoneNumber((long)555348520).withEmail("sh.abjaparov@gmail.com").withCourse(course1).withProject(project).isActive(1).withLevel(3).build();
-        User user2 = new User.Builder("ilyas").withName("Ilyas Yangurazov").withGender("male").withPassword("123").withPhoneNumber((long)555348521).withEmail("ilyas@gmail.com").withCourse(course2).withProject(project).isActive(1).withLevel(3).build();
+
+        User user1 = new User.Builder("shabdan").withName("Shabdan Abzhaparov").withGender("male").withPassword("123").withPhoneNumber((long)555348520).withEmail("sh.abjaparov@gmail.com").withCourse(course1).isActive(1).withLevel(3).build();
+        User user2 = new User.Builder("ilyas").withName("Ilyas Yangurazov").withGender("male").withPassword("123").withPhoneNumber((long)555348521).withEmail("ilyas@gmail.com").withCourse(course2).isActive(1).withLevel(3).build();
         User user6 = new User.Builder("danya").withName("Daniar Chekirov").withGender("male").withPassword("123").withPhoneNumber((long)555348529).withEmail("danya@gmail.com").withCourse(course2).isActive(1).withLevel(2).build();
         User user5 = new User.Builder("aito").withName("Aitemir").withGender("male").withPassword("123").withPhoneNumber((long)555348528).withEmail("aito@gmail.com").withCourse(course3).isActive(1).withLevel(3).build();
         User user3 = new User.Builder("aibek").withName("Aibek Aibekov").withGender("male").withPassword("123").withPhoneNumber((long)555348522).withEmail("aibek@gmail.com").isActive(1).withLevel(1).build();
@@ -79,6 +85,10 @@ public class   BootstrapMain implements CommandLineRunner {
         User user10 = new User.Builder("altyn").withName("Altynbek").withGender("male").withPassword("123").withPhoneNumber((long)555348534).withEmail("altysh@gmail.com").withCourse(course3).isActive(1).withLevel(2).build();
         User user11 = new User.Builder("aika").withName("Aika").withGender("female").withPassword("123").withPhoneNumber((long)555348536).withEmail("aika@gmail.com").withCourse(course2).isActive(1).withLevel(4).build();
         User user12 = new User.Builder("erkin").withName("Erkin").withGender("male").withPassword("123").withPhoneNumber((long)555348537).withEmail("erkin@gmail.com").withCourse(course3).isActive(1).withLevel(3).build();
+        Set<Project> projects = new HashSet<>();
+        projects.add(project);
+        projects.add(project2);
+        user1.setProjects(projects);
 
         userService.createUser(user1);
         userService.createUser(user2);
@@ -92,6 +102,8 @@ public class   BootstrapMain implements CommandLineRunner {
         userService.createUser(user10);
         userService.createUser(user11);
         userService.createUser(user12);
+
+
 //        //(String title, Integer status, Double duration, User mentorId, User mentor2Id)
 //        mentorRepository.save(new Mentor(user2, course2));
 //        mentorRepository.save(new Mentor(user6, course2));

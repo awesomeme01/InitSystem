@@ -3,6 +3,8 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "projects_init_1")
@@ -18,6 +20,8 @@ public class Project {
     private LocalDateTime dateCreated;
     @Column(name = "isCompleted")
     private int isCompleted;
+    @ManyToMany(mappedBy = "projects")
+    private Set<User> users = new HashSet<>();
 
     public Project() {
         this.dateCreated = LocalDateTime.now();
@@ -69,6 +73,14 @@ public class Project {
 
     public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }
 

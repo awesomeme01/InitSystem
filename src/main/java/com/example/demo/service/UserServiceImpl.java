@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         userRoleService.createUserRole(new UserRole("ROLE_USER", user));
-        return userRepository.save(user);
+        return user;
     }
 
     @Override
