@@ -43,11 +43,15 @@ public class UserController {
                 .withPassword(userWrapper.getPassword())
                 .withPhoneNumber(userWrapper.getPhonenumber())
                 .withEmail(userWrapper.getEmail())
-                .withCourse(courseRepository.findById(userWrapper.getCourseId()).get())
                 .isActive(userWrapper.getIsActive())
                 .withLevel(userWrapper.getLevel())
-                .withGroup(groupRepository.findById(userWrapper.getGroupId()).get())
                 .build();
+        if(userWrapper.getCourseId()!=null){
+            user.setCourse(courseRepository.findById(userWrapper.getCourseId()).get());
+        }
+        if(userWrapper.getGroupId()!=null){
+            user.setGroup(groupRepository.findById(userWrapper.getGroupId()).get());
+        }
         return new Response(true, "New user created!", userService.createUser(user));
     }
     @Secured("ROLE_ADMIN")

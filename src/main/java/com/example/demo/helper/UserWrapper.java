@@ -4,7 +4,7 @@ public class UserWrapper {
     private String username;
     private String fullname;
     private String email;
-    private Long phonenumber;
+    private Long phoneNumber;
     private String password;
     private String gender;
     private int isActive;
@@ -15,11 +15,11 @@ public class UserWrapper {
     public UserWrapper() {
     }
 
-    public UserWrapper(String username, String fullname, String email, Long phonenumber, String password, String gender, int isActive, int level, Long courseId, Long groupId) {
+    public UserWrapper(String username, String fullname, String email, Long phoneNumber, String password, String gender, int isActive, int level, Long courseId, Long groupId) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.password = password;
         this.gender = gender;
         this.isActive = isActive;
@@ -55,11 +55,11 @@ public class UserWrapper {
     }
 
     public Long getPhonenumber() {
-        return phonenumber;
+        return phoneNumber;
     }
 
     public void setPhonenumber(Long phonenumber) {
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phonenumber;
     }
 
     public String getPassword() {
