@@ -85,10 +85,10 @@ public class   BootstrapMain implements CommandLineRunner {
         User user10 = new User.Builder("altyn").withName("Altynbek").withGender("male").withPassword("123").withPhoneNumber((long)555348534).withEmail("altysh@gmail.com").withCourse(course3).isActive(1).withLevel(2).build();
         User user11 = new User.Builder("aika").withName("Aika").withGender("female").withPassword("123").withPhoneNumber((long)555348536).withEmail("aika@gmail.com").withCourse(course2).isActive(1).withLevel(4).build();
         User user12 = new User.Builder("erkin").withName("Erkin").withGender("male").withPassword("123").withPhoneNumber((long)555348537).withEmail("erkin@gmail.com").withCourse(course3).isActive(1).withLevel(3).build();
-        Set<Project> projects = new HashSet<>();
-        projects.add(project);
-        projects.add(project2);
-        user1.setProjects(projects);
+//        Set<Project> projects = new HashSet<>();
+//        projects.add(project);
+//        projects.add(project2);
+//        user1.setProjects(projects);
 
         userService.createUser(user1);
         userService.createUser(user2);
