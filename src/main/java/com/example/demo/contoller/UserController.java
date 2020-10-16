@@ -3,9 +3,11 @@ package com.example.demo.contoller;
 import com.example.demo.helper.LoginCheck;
 import com.example.demo.helper.Response;
 import com.example.demo.helper.UserUpdateWrapper;
+import com.example.demo.helper.UserWrapper;
 import com.example.demo.model.Course;
 import com.example.demo.model.User;
 import com.example.demo.repository.CourseRepository;
+import com.example.demo.repository.GroupRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -25,6 +27,8 @@ public class UserController {
     UserService userService;
     @Autowired
     CourseRepository courseRepository;
+    @Autowired
+    GroupRepository groupRepository;
     @Secured("ROLE_ADMIN")
     @GetMapping(path = "/getAll")
     public Response getAll(){
@@ -32,7 +36,18 @@ public class UserController {
     }
     @Secured("ROLE_ADMIN")
     @PostMapping(path = "/create")
-    public Response createUser(@RequestBody User user){
+    public Response createUser(@RequestBody UserWrapper userWrapper){
+        User user = new User.Builder(userWrapper.getUsername())
+                .withName(userWrapper.getFullname())
+                .withGender(userWrapper.getGender())
+                .withPassword(userWrapper.getPassword())
+                .withPhoneNumber(userWrapper.getPhonenumber())
+                .withEmail(userWrapper.getEmail())
+                .withCourse(courseRepository.findById(userWrapper.getCourseId()).get())
+                .isActive(userWrapper.getIsActive())
+                .withLevel(userWrapper.getLevel())
+                .withGroup(groupRepository.findById(userWrapper.getGroupId()).get())
+                .build();
         return new Response(true, "New user created!", userService.createUser(user));
     }
     @Secured("ROLE_ADMIN")
