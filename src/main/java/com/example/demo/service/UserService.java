@@ -17,5 +17,7 @@ public interface UserService {
     User getUserById(Long id);
     void deleteUserById(Long id);
     List<User> getByProject(Project project);
+    User getUserByUsername(String username);
 
+    User changePassword(User user,String password);
 }

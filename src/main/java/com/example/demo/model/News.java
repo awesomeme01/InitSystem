@@ -17,10 +17,12 @@ public class News {
     private int isActive;
     @Column(name = "forRole")
     private String forRole;
-    @Column(name = "dateAdded", nullable =false)
+    @Column(name = "dateAdded", nullable = false)
     private LocalDateTime dateAdded;
 
     public News() {
+        this.isActive = 1;
+        this.dateAdded = LocalDateTime.now();
     }
 
     public News(String title, String description, int isActive, String forRole) {

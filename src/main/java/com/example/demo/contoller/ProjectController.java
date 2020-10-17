@@ -34,7 +34,7 @@ public class ProjectController {
         return new Response(true, "All Projects", projectUsers);
 
     }
-    @Secured("ROLE_USER")
+    @Secured("ROLE_ADMIN")
     @PostMapping("/create")
     public Response create(@RequestBody Project project){
 

@@ -1,10 +1,9 @@
 package com.example.demo.contoller;
 
-import com.example.demo.helper.LoginCheck;
 import com.example.demo.helper.Response;
 import com.example.demo.helper.UserUpdateWrapper;
 import com.example.demo.helper.UserWrapper;
-import com.example.demo.model.Course;
+import com.example.demo.helper.PasswordWrapper;
 import com.example.demo.model.User;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.GroupRepository;
@@ -12,6 +11,8 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -29,7 +30,8 @@ public class UserController {
     CourseRepository courseRepository;
     @Autowired
     GroupRepository groupRepository;
-    @Secured("ROLE_ADMIN")
+
+    @Secured("ROLE_USER")
     @GetMapping(path = "/getAll")
     public Response getAll(){
         return new Response(true, "All registered users", userService.getAll());
@@ -79,6 +81,12 @@ public class UserController {
     public Response deleteUser(@PathVariable Long id){
         userService.deleteUserById(id);
         return new Response(true, "User with id = " + id + " was deleted!", null );
+    }
+    @Secured("ROLE_USER")
+    @PostMapping(path = "/changePassword/{id}")
+    public Response changePassword(@RequestBody PasswordWrapper passwordWrapper, @PathVariable Long id){
+
+        return new Response(true,"Password changed successfully", userService.changePassword(userService.getUserById(id), passwordWrapper.getPassword()));
     }
 
 

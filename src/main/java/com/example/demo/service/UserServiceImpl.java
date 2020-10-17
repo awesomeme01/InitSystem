@@ -36,6 +36,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User changePassword(User user, String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        password = passwordEncoder.encode(password);
+        user.setPassword(password);
+        return userRepository.save(user);
+    }
+
+    @Override
     public User updateUser(UserUpdateWrapper userUpdateWrapper, Long id) {
         User user = new User.Builder(userUpdateWrapper.getUsername())
                 .withEmail(userUpdateWrapper.getEmail())
@@ -58,7 +71,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getUsersByCourse(Course course){
-        return userRepository.findAll().stream().filter(x->x.getCourse().equals(course)).collect(Collectors.toList());
+        return userRepository.findAll().stream().filter(x->{
+            if(x.getCourse()!=null){
+                if(x.getCourse().equals(course)){
+                    return true;
+                }
+            }
+            return false;
+        }).collect(Collectors.toList());
     }
 //    @Override
 //    public User login(LoginCheck loginCheck){
