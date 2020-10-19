@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.helper.LoginCheck;
+import com.example.demo.helper.PasswordWrapper;
 import com.example.demo.helper.UserUpdateWrapper;
 import com.example.demo.model.Course;
 import com.example.demo.model.Project;
@@ -41,10 +42,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User changePassword(User user, String password) {
+    public User changePassword(PasswordWrapper passwordWrapper) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        password = passwordEncoder.encode(password);
-        user.setPassword(password);
+        String newP = passwordEncoder.encode(passwordWrapper.getNewPassword());
+        User user = passwordWrapper.getUser();
+        user.setPassword(newP);
         return userRepository.save(user);
     }
 

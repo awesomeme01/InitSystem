@@ -83,11 +83,9 @@ public class UserController {
         return new Response(true, "User with id = " + id + " was deleted!", null );
     }
     @Secured("ROLE_USER")
-    @PostMapping(path = "/changePassword/{id}")
-    public Response changePassword(@RequestBody PasswordWrapper passwordWrapper, @PathVariable Long id){
-
-        return new Response(true,"Password changed successfully", userService.changePassword(userService.getUserById(id), passwordWrapper.getPassword()));
+    @PostMapping(path = "/changePassword")
+    public Response changePassword(@RequestBody PasswordWrapper passwordWrapper, Principal principal){
+        passwordWrapper.setUser(userService.getUserByUsername(principal.getName()));
+        return new Response(true,"Password changed successfully", userService.changePassword(passwordWrapper));
     }
-
-
 }

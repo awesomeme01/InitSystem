@@ -1,1 +1,42 @@
-helloworld
+LoginController.java
+"/login"
+    1. GET      - getAll()              - "/myUser"                     - no body               - "ROLE_USER"
+
+UserController.java
+"/user"
+    1. GET      - getAll()              - "/getAll"                     - no body               - "ROLE_USER"
+    2. POST     - createUser()          - "/create"                     - {UserWrapper}         - "ROLE_ADMIN"
+    3. POST     - updateUser()          - "/update/{userId}"            - {UserUpdateWrapper}   - "ROLE_ADMIN"
+    4. GET      - getUserById()         - "/get/{userId}"               - no body               - "ROLE_ADMIN"
+    5. GET      - getUsersByCourseId()  - "/getByCourseId/{courseId}"   - no body               - "ROLE_USER"
+    6. DELETE   - deleteUser()          - "/delete/{userId}"            - no body               - "ROLE_ADMIN"
+    7. POST     - changePassword        - "/changePassword"             - {PasswordWrapper}     - "ROLE_USER"
+
+UserRoleController.java - "ROLE_ADMIN"
+"/api/userRoles"
+    1. GET      - getAll()              - "/getAll"                     - no body
+    2. GET      - getByUser()           - "/getByUser/{userId}"         - no body
+    3. DELETE   - delete()              - "/delete/{id}"                - no body
+    4. POST     - create()              - "/create"                     - {UserRole}
+
+CourseController.java
+"/api/course"
+    1. GET      - getAll()              - "/getAll"                     - no body               - "ROLE_USER"
+    2. POST     - create()              - "/create"                     - {Course}              - "ROLE_ADMIN"
+    3. POST     - update()              - "/update/{id}"                - {CourseUpdateWrapper} - "ROLE_ADMIN"
+    4. GET      - getById()             - "/getById/{id}"               - no body               - "ROLE_USER"
+    5. DELETE   - delete                - "/delete/{id}"                - no body               - "ROLE_ADMIN"
+
+ProjectController.java
+"/projects"
+    1. GET      - getAll()              - "/getAll"                     - no body               - "ROLE_USER"
+    2. POST     - create()              - "/create"                     - {Project}             - "ROLE_ADMIN"
+    3. POST     - setCompleted()        - "/setCompleted/{projectId}/{status}" - no body        - "ROLE_ADMIN"
+    4. POST     - update()              - "/updateProject/{id}"         - {Project without id}  - "ROLE_ADMIN"
+    5. DELETE   - delete()              - "/delete/{id}"                - no body               - "ROLE_ADMIN"
+
+NewsController.java
+"/api/news"
+    1. GET      - getAll()              - "/getAll"                     - no body               - "ROLE_USER"
+    2. POST     - create()              - "/create"                     - {News}                - "ROLE_ADMIN"
+    3. DELETE   - delete()              - "/delete/{id}"                - no body               - "ROLE_ADMIN"

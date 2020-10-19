@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.helper.LoginCheck;
+import com.example.demo.helper.PasswordWrapper;
 import com.example.demo.helper.UserUpdateWrapper;
 import com.example.demo.model.Course;
 import com.example.demo.model.Project;
@@ -19,5 +20,5 @@ public interface UserService {
     List<User> getByProject(Project project);
     User getUserByUsername(String username);
 
-    User changePassword(User user,String password);
+    User changePassword(PasswordWrapper passwordWrapper);
 }

@@ -47,7 +47,6 @@ public class NewsController {
     @PostMapping(path = "/create")
     public Response create(@RequestBody News news){
         return new Response(true, "Created new news", newsService.create(news));
-
     }
 
     @Secured("ROLE_ADMIN")

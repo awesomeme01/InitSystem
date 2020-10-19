@@ -41,4 +41,22 @@ public class ProjectController {
         return new Response(true, "Created new project", projectService.create(project));
     }
 
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/setCompleted/{id}/{status}")
+    public Response setCompleted(@PathVariable Long id, @PathVariable int status){
+        return new Response(true, "Set completed status to " + status, projectService.setCompleted(id, status));
+    }
+
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/updateProject/{id}")
+    public Response update(@RequestBody Project project, @PathVariable Long id){
+        return new Response(true, "Updated project with id " + id, projectService.updateProject(id, project));
+    }
+
+    @Secured("ROLE_ADMIN")
+    @DeleteMapping("/delete/{id}")
+    public Response delete(@PathVariable Long id){
+        projectService.deleteProject(id);
+        return new Response(true, "Deleted project with id = " + id, null );
+    }
 }
