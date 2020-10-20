@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class   BootstrapMain implements CommandLineRunner {
+public class BootstrapMain implements CommandLineRunner {
     @Autowired
     CourseService courseService;
     @Autowired
@@ -31,12 +31,6 @@ public class   BootstrapMain implements CommandLineRunner {
 //    MentorRepository mentorRepository;
     @Override
     public void run(String... args) throws Exception{
-        //Initial users
-
-        //Initial UserRoles
-
-
-        //Initial Course
 
         Course course1 = new Course("Java", 2.5, 1);
         Course course2 = new Course("Javascript", 2.5, 1);

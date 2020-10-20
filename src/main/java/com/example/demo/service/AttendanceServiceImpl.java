@@ -3,12 +3,14 @@ package com.example.demo.service;
 import com.example.demo.model.Attendance;
 import com.example.demo.repository.AttendanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class AttendanceServiceImpl implements AttendanceService{
     @Autowired
     AttendanceRepository attendanceRepository;
