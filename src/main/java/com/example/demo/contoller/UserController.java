@@ -39,27 +39,45 @@ public class UserController {
     @Secured("ROLE_ADMIN")
     @PostMapping(path = "/create")
     public Response createUser(@RequestBody UserWrapper userWrapper){
-        User user = new User.Builder(userWrapper.getUsername())
-                .withName(userWrapper.getFullname())
-                .withGender(userWrapper.getGender())
-                .withPassword(userWrapper.getPassword())
-                .withPhoneNumber(userWrapper.getPhonenumber())
-                .withEmail(userWrapper.getEmail())
-                .isActive(userWrapper.getIsActive())
-                .withLevel(userWrapper.getLevel())
-                .build();
-        if(userWrapper.getCourseId()!=null){
-            user.setCourse(courseRepository.findById(userWrapper.getCourseId()).get());
+        try{
+            User user = new User.Builder(userWrapper.getUsername())
+                    .withName(userWrapper.getFullname())
+                    .withGender(userWrapper.getGender())
+                    .withPassword(userWrapper.getPassword())
+                    .withPhoneNumber(userWrapper.getPhonenumber())
+                    .withEmail(userWrapper.getEmail())
+                    .isActive(userWrapper.getIsActive())
+                    .withLevel(userWrapper.getLevel())
+                    .build();
+            if(userWrapper.getCourseId()!=null){
+                user.setCourse(courseRepository.findById(userWrapper.getCourseId()).get());
+            }
+            if(userWrapper.getGroupId()!=null){
+                user.setGroup(groupRepository.findById(userWrapper.getGroupId()).get());
+            }
+            return new Response(true, "New user created!", userService.createUser(user));
         }
-        if(userWrapper.getGroupId()!=null){
-            user.setGroup(groupRepository.findById(userWrapper.getGroupId()).get());
+        catch (NullPointerException ex){
+            return new Response(false, "Some fields were empty!", ex.getStackTrace());
         }
-        return new Response(true, "New user created!", userService.createUser(user));
     }
     @Secured("ROLE_ADMIN")
     @PostMapping(path = "/update/{id}")
     public Response updateUser(@RequestBody UserUpdateWrapper userUpdateWrapper, @PathVariable Long id){
-        return new Response(true, "Updated user with id = " + id, userService.updateUser(userUpdateWrapper, id));
+        try{
+            User user = new User.Builder(userUpdateWrapper.getUsername())
+                    .withEmail(userUpdateWrapper.getEmail())
+                    .withGender(userUpdateWrapper.getGender())
+                    .withPhoneNumber(userUpdateWrapper.getPhoneNumber())
+                    .withName(userUpdateWrapper.getFullname())
+                    .withPassword(userUpdateWrapper.getPassword())
+                    .isActive(userUpdateWrapper.getIsActive()).build();
+            return new Response(true, "Updated user with id = " + id, userService.updateUser(user, id));
+        }
+        catch (NullPointerException ex){
+            return new Response(false, "Some fields were empty!", ex.getStackTrace());
+        }
+
     }
 //    @Secured("ROLE_ADMIN")
 //    @PostMapping(path = "/login")

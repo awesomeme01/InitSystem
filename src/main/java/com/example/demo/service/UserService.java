@@ -14,7 +14,7 @@ public interface UserService {
     List<User> getUsersByCourse(Course course);
 //    User login(LoginCheck loginCheck);
     User createUser(User user);
-    User updateUser(UserUpdateWrapper userUpdateWrapper, Long id);
+    User updateUser(User user, Long id);
     User getUserById(Long id);
     void deleteUserById(Long id);
     List<User> getByProject(Project project);

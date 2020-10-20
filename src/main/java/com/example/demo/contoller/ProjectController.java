@@ -30,7 +30,6 @@ public class ProjectController {
         for(Project p : projects){
             projectUsers.add(new ProjectUser(userService.getByProject(p), p));
         }
-
         return new Response(true, "All Projects", projectUsers);
 
     }

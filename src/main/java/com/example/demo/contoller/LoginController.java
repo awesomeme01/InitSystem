@@ -32,14 +32,7 @@ public class LoginController {
     @ResponseBody
     public Response currentUserName(Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
-//        if(user != null){
-        System.out.println("Request is successfully returned");
         return new Response(true,"Current user information", user, userRoleService.getRolesByUserId(user.getId()));
-
-//        }
-//        else{
-//            return new Response( false,"Current user information", null );
-//        }
     }
 
     @RequestMapping(value = "/dashBoard", method = RequestMethod.GET)

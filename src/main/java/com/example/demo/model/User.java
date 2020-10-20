@@ -181,7 +181,7 @@ public class User {
     public Long getPhoneNumber() {
         return phoneNumber;
     }
-
+    
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

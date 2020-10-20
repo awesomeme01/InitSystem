@@ -51,14 +51,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updateUser(UserUpdateWrapper userUpdateWrapper, Long id) {
-        User user = new User.Builder(userUpdateWrapper.getUsername())
-                .withEmail(userUpdateWrapper.getEmail())
-                .withGender(userUpdateWrapper.getGender())
-                .withPhoneNumber(userUpdateWrapper.getPhoneNumber())
-                .withName(userUpdateWrapper.getFullname())
-                .withPassword(userUpdateWrapper.getPassword())
-                .isActive(userUpdateWrapper.getIsActive()).build();
+    public User updateUser(User user, Long id) {
+
         return createUser(user);
     }
 
