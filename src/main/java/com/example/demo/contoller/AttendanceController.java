@@ -1,12 +1,15 @@
 package com.example.demo.contoller;
 
+import com.example.demo.helper.AttendanceWrapper;
 import com.example.demo.helper.Response;
 import com.example.demo.model.Attendance;
 import com.example.demo.service.AttendanceService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,10 +18,15 @@ import java.util.List;
 public class AttendanceController {
     @Autowired
     AttendanceService attendanceService;
-
+    @Autowired
+    UserService userService;
     @PostMapping("/save")
-    public Response saveAttendance(@RequestBody List<Attendance> attendances){
-        return new Response(true, "Saved attendance", attendanceService.createAttendance(attendances));
+    public Response saveAttendance(@RequestBody List<AttendanceWrapper> attendances){
+        List<Attendance> attendanceList = new ArrayList<>();
+        for(AttendanceWrapper x : attendances){
+            attendanceList.add(new Attendance(userService.getUserById(x.getUserId()), x.getStatus()));
+        }
+        return new Response(true, "Saved attendance", attendanceService.createAttendance(attendanceList));
     }
     @GetMapping("/getToday")
     public Response getToday(){

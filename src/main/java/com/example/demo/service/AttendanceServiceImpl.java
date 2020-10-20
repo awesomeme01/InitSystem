@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,11 +69,12 @@ public class AttendanceServiceImpl implements AttendanceService{
     @Override
     public List<Attendance> getToday() {
         LocalDateTime localDateTime = LocalDateTime.now();
-        return attendanceRepository.findAll().stream().filter(x->{
+        List list1 = attendanceRepository.findAll().stream().filter(x->{
             return x.getLocalDateTime().getDayOfMonth() == localDateTime.getDayOfMonth() &&
                     x.getLocalDateTime().getMonthValue() == localDateTime.getMonthValue() &&
                     x.getLocalDateTime().getYear() == localDateTime.getYear();
         }).collect(Collectors.toList());
+        return list1;
     }
 
     @Override
@@ -88,7 +90,17 @@ public class AttendanceServiceImpl implements AttendanceService{
 
     @Override
     public List<Attendance> createAttendance(List<Attendance> l) {
-        return attendanceRepository.saveAll(l);
+        List<Attendance> beforeForToday = getToday();
+        List<Attendance> newData = new ArrayList<>();
+        for(Attendance a : l){
+            for(Attendance b : beforeForToday){
+                if(a.getUser().equals(b.getUser())){
+                    attendanceRepository.deleteById(b.getId());
+                }
+            }
+            newData.add(a);
+        }
+        return attendanceRepository.saveAll(newData);
     }
 
     @Override
