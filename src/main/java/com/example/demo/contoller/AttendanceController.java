@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/attendance")
+@RequestMapping("/api/attendance")
 @Secured("ROLE_ADMIN")
 public class AttendanceController {
     @Autowired
