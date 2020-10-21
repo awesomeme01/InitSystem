@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.Entity;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,7 +30,7 @@ public class NewsController {
     @Secured("ROLE_USER")
     @GetMapping(path = "/getAll")
     public Response getAll(Principal principal){
-        ArrayList<UserRole> userRoles = new ArrayList<>(userRoleService.getRolesByUserId(userRepository.findByUsername(principal.getName()).getId()));
+        List<UserRole> userRoles = userRoleService.getRolesByUserId(userRepository.findByUsername(principal.getName()).getId());
         boolean isAdmin = false;
         for(UserRole u: userRoles){
             if(u.getRole().equals("ROLE_ADMIN")){
