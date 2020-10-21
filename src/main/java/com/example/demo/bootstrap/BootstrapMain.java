@@ -113,18 +113,18 @@ public class BootstrapMain implements CommandLineRunner {
         UserRole userRole3 = new UserRole("ROLE_ADMIN", user8);
         UserRole userRole4 = new UserRole("ROLE_ADMIN", user9);
 //        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
-        UserRole userRole5 = new UserRole("ROLE_ADMIN", user10);
+//        UserRole userRole5 = new UserRole("ROLE_ADMIN", user10);
 //        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
         UserRole userRole6 = new UserRole("ROLE_ADMIN", user11);
-//        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);
-        UserRole userRole7 = new UserRole("ROLE_ADMIN", user12);
+//        UserRole userRole1 = new UserRole("ROLE_ADMIN", user1);1
+//        UserRole userRole7 = new UserRole("ROLE_ADMIN", user12);
         userRoleService.createUserRole(userRole1);
         userRoleService.createUserRole(userRole2);
         userRoleService.createUserRole(userRole3);
         userRoleService.createUserRole(userRole4);
-        userRoleService.createUserRole(userRole5);
+//        userRoleService.createUserRole(userRole5);
         userRoleService.createUserRole(userRole6);
-        userRoleService.createUserRole(userRole7);
+//        userRoleService.createUserRole(userRole7);
         userRoleService.createUserRole(userRole8);
 
 
