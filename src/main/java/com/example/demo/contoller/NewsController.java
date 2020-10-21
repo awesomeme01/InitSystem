@@ -29,20 +29,8 @@ public class NewsController {
     UserRepository userRepository;
     @Secured("ROLE_USER")
     @GetMapping(path = "/getAll")
-    public Response getAll(Principal principal){
-        List<UserRole> userRoles = userRoleService.getRolesByUserId(userRepository.findByUsername(principal.getName()).getId());
-        boolean isAdmin = false;
-        for(UserRole u: userRoles){
-            if(u.getRole().equals("ROLE_ADMIN")){
-                isAdmin = true;
-            }
-        }
-        if(isAdmin == true){
-            return new Response(true, "all news objects", newsService.getAll(0));
-        }
-        else{
-            return new Response(true, "All news object for students",newsService.getAll(1));
-        }
+    public Response getAll(Principal principal) {
+        return new Response(true, "all news objects", newsService.getAll(0));
     }
     @Secured("ROLE_ADMIN")
     @PostMapping(path = "/create")
