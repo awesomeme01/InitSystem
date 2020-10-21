@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/attendance")
 @Secured("ROLE_ADMIN")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class AttendanceController {
     @Autowired
     AttendanceService attendanceService;
