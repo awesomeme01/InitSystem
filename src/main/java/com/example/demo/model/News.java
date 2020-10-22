@@ -22,7 +22,7 @@ public class News {
 
     public News() {
         this.isActive = 1;
-        this.dateAdded = LocalDateTime.now();
+        this.dateAdded = LocalDateTime.now().plusHours(6);
     }
 
     public News(String title, String description, int isActive, String forRole) {
@@ -30,13 +30,13 @@ public class News {
         this.description = description;
         this.isActive = isActive;
         this.forRole = forRole;
-        this.dateAdded = LocalDateTime.now();
+        this.dateAdded = LocalDateTime.now().plusHours(6);
     }
     public News(String title, String description, int isActive) {
         this.title = title;
         this.description = description;
         this.isActive = isActive;
-        this.dateAdded = LocalDateTime.now();
+        this.dateAdded = LocalDateTime.now().plusHours(6);
     }
 
     public Long getId() {

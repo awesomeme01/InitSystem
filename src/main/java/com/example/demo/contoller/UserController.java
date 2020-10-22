@@ -36,6 +36,13 @@ public class UserController {
     public Response getAll(){
         return new Response(true, "All registered users", userService.getAll());
     }
+
+    @Secured("ROLE_USER")
+    @GetMapping(path = "/getStudentsByCourse/{id}")
+    public Response getStudentsByCourse(@PathVariable Long id){
+        return new Response(true, "All student in course with id = " + id, userService.getUsersByCourse(courseRepository.findById(id).get()).stream().filter(x->x.getLevel() == 1));
+    }
+
     @Secured("ROLE_ADMIN")
     @PostMapping(path = "/create")
     public Response createUser(@RequestBody UserWrapper userWrapper){

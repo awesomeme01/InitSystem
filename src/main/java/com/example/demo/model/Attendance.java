@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Entity
 @Table(name = "attendance_init_1")
@@ -21,11 +22,11 @@ public class Attendance {
     private int status;
 
     public Attendance(){
-        this.localDateTime = LocalDateTime.now();
+        this.localDateTime = LocalDateTime.now().plusHours(6);
     }
     public Attendance(User user, int status) {
         this.user = user;
-        this.localDateTime = LocalDateTime.now();
+        this.localDateTime = LocalDateTime.now().plusHours(6);
         this.status = status;
     }
 

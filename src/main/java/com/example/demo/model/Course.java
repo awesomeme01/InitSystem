@@ -28,7 +28,7 @@ public class Course {
 //    private List<Mentor> mentors;
 
     public Course() {
-        this.date = LocalDateTime.now();
+        this.date = LocalDateTime.now().plusHours(6);
         this.status = 1;
     }
 
@@ -36,13 +36,13 @@ public class Course {
         this.title = title;
         this.status = status;
         this.duration = duration;
-        this.date = LocalDateTime.now();
+        this.date = LocalDateTime.now().plusHours(6);
     }
     public Course(String title, Double duration, Integer status, User mentor, User mentor2) {
         this.title = title;
         this.status = status;
         this.duration = duration;
-        this.date = LocalDateTime.now();
+        this.date = LocalDateTime.now().plusHours(6);
     }
     public Long getId() {
         return id;

@@ -24,7 +24,7 @@ public class Project {
     private Set<User> users = new HashSet<>();
 
     public Project() {
-        this.dateCreated = LocalDateTime.now();
+        this.dateCreated = LocalDateTime.now().plusHours(6);
         this.isCompleted = 0;
     }
 
@@ -32,7 +32,7 @@ public class Project {
         this.title = title;
         this.isCompleted = 0;
         this.description = description;
-        this.dateCreated = LocalDateTime.now();
+        this.dateCreated = LocalDateTime.now().plusHours(6);
     }
 
     public Long getId() {
