@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.4.2</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
@@ -40,17 +40,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -60,7 +49,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>1.16.16</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,9 +62,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
 	</dependencies>
+
 	<build>
-		<defaultGoal>package</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -86,7 +78,7 @@
 				<executions>
 					<execution>
 						<phase>package</phase>
-<!--						<configuration></configuration>-->
+						<!--						<configuration></configuration>-->
 						<goals><goal>copy</goal></goals>
 						<configuration>
 							<artifactItems>
@@ -101,23 +93,6 @@
 					</execution>
 				</executions>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>com.heroku.sdk</groupId>-->
-<!--				<artifactId>heroku-maven-plugin</artifactId>-->
-<!--				<version>3.0.3</version>-->
-<!--				<configuration>-->
-<!--					<appName>heroku-demo-stackabuse</appName>-->
-<!--					<includeTarget>false</includeTarget>-->
-<!--					<includes>-->
-<!--						<include>${project.build.directory}/${project.build.finalName}.jar</include>-->
-<!--					</includes>-->
-<!--					<jdkVersion>1.8</jdkVersion>-->
-<!--					<processTypes>-->
-<!--						<web>java $JAVA_OPTS -jar-->
-<!--							${project.build.directory}/${project.build.finalName}.jar</web>-->
-<!--					</processTypes>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
 		</plugins>
 	</build>
 
