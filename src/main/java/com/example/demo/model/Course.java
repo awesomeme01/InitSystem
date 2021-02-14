@@ -22,7 +22,7 @@ public class Course {
     private Double duration;//month
     @Column(name = "status", unique = false)
     private Integer status;
-    @Column(name = "dateStarted",unique = false )
+    @Column(name = "start_date",unique = false )
     private LocalDateTime date;
 //    @Transient
 //    private List<Mentor> mentors;
