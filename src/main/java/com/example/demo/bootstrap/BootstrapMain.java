@@ -42,11 +42,12 @@ public class BootstrapMain implements CommandLineRunner {
             newsRepository.save(news);
             newsRepository.save(news2);
 
-//            User user1 = new User.Builder("admin").withName("admin").withGender("male").withPassword("1267476").withPhoneNumber((long)555555555).withEmail("gijdjd@gmail.com").isActive(1).withLevel(4).build();
+            User user1 = new User.Builder("admin").withName("admin").withGender("male").withPassword("1267476").withPhoneNumber((long)555555555).withEmail("gijdjd@gmail.com").isActive(1).withLevel(4).build();
             User user2 = new User.Builder("ilyas").withName("Ilyas Yangurazov").withGender("male").withPassword("123").withPhoneNumber((long)555348521).withEmail("ilyas@gmail.com").withCourse(course2).isActive(1).withLevel(3).build();
             User user7 = new User.Builder("ratmir").withName("Ratmir").withGender("male").withPassword("123").withPhoneNumber((long)555348530).withEmail("ratmir@gmail.com").isActive(1).withLevel(4).build();
             User user9 = new User.Builder("alish").withName("Alish").withGender("male").withPassword("123").withPhoneNumber((long)555348532).withEmail("alish@gmail.com").isActive(1).withLevel(4).build();
             User user12 = new User.Builder("erkin").withName("Erkin").withGender("male").withPassword("123").withPhoneNumber((long)555348537).withEmail("erkin@gmail.com").withCourse(course3).isActive(1).withLevel(3).build();
+            userService.createUser(user1);
             userService.createUser(user2);
             userService.createUser(user7);
             userService.createUser(user9);
@@ -67,10 +68,10 @@ public class BootstrapMain implements CommandLineRunner {
             Set<Project> projects = new HashSet<>();
             projects.add(project);
             projects.add(project2);
-            User user1 = userService.getUserByUsername("admin");
-            user1.setProjects(projects);
+            User userx = userService.getUserByUsername("admin");
+            userx.setProjects(projects);
 
-            userService.updateUser(user1, user1.getId());
+            userService.updateUser(userx, userx.getId());
 
             UserRole userRole2 = new UserRole("ROLE_ADMIN", user2);
             UserRole userRole8 = new UserRole("ROLE_ADMIN", user7);
